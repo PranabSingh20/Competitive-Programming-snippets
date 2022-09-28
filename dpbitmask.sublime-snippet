@@ -1,0 +1,21 @@
+<snippet>
+	<content><![CDATA[
+int dpBitmask(vector<int> a, vector<int> b){
+    vector<int> dp(1 << n, INF);    //adjust for min/max
+    dp[0] = 0;
+    for (int mask = 1; mask < (1 << n); mask++) {
+        int i = n - __builtin_popcount(mask);
+        for (int j = 0; j < n; j++) {
+            if (mask & (1 << j)) {
+                dp[mask] = min(dp[mask], dp[mask ^ (1 << j)] /* + do something a[i], b[j]*/);
+            }
+        }
+    }
+    return dp[(1 << n) - 1];
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>dpbitmask</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	 <scope>source.c++</scope> 
+</snippet>

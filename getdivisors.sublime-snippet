@@ -1,0 +1,26 @@
+<snippet>
+	<content><![CDATA[
+vector<int> divisors(int n) {   
+    vector<int> v1, v2;
+    for (int i = 1; i * i <= n; ++i) {
+        if (n % i == 0) {
+            if (n / i == i) {
+                v1.pb(i);
+            }
+            else {
+                v1.pb(i);
+                v2.pb(n / i);
+            }
+        }
+    }
+    for (int i = v2.size() - 1; i >= 0; --i) {
+        v1.pb(v2[i]);
+    }
+    return v1;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>getdivisors</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	 <scope>source.c++</scope> 
+</snippet>

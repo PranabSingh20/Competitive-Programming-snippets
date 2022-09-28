@@ -1,0 +1,20 @@
+<snippet>
+	<content><![CDATA[
+string binary(ll x) {
+    string s = "";
+    for (int i = 63 - __builtin_clzll(x); i >= 0; i--) {
+        if (x & (1LL << i)) {
+            s += '1';
+        }
+        else {
+            s += '0';
+        }
+    }
+    return s;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>tobinary</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	 <scope>source.c++</scope> 
+</snippet>

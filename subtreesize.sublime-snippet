@@ -1,0 +1,25 @@
+<snippet>
+	<content><![CDATA[
+const int N = 2e5 + 5;
+vector<int> adj[N];
+int subtree[N], depth[N];
+bool vis[N];
+
+void dfs(int c, int p) {
+    vis[c] = 1;
+    for (auto it : adj[c]) {
+        if (!vis[it]) {
+            dfs(it, c);
+        }
+    }
+    if (p != c) {
+        depth[p] = max(depth[p], depth[c] + 1);
+        subtree[p] += subtree[c] + 1;
+    }
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>subtreesize</tabTrigger> 
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	 <scope>source.c++</scope> 
+</snippet>

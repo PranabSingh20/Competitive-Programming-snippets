@@ -1,0 +1,35 @@
+<snippet>
+	<content><![CDATA[
+//https://atcoder.jp/contests/abc206/editorial/2107
+long long coprime(long long l, long long r) {
+    if(l >= r)return 0;
+    long long res = 0;
+    vector<int> cnt(r + 1, 0);
+    for (long long i = 2; i <= r; ++i) {
+        if (cnt[i] != 0) {continue;}
+        for (long long j = i; j <= r; j += i) {cnt[j]++;}
+        for (long long j = i * i; j <= r; j += i * i) {cnt[j] = -INF;}
+    }
+    for (long long i = 2; i <= r; ++i) {
+        if (cnt[i] < 0) {continue;}
+        long long cc = (r / i) - ((l - 1) / i);
+        if (cnt[i] % 2) {res += (cc * (cc - 1)) / 2;}
+        else {res -= (cc * (cc - 1)) / 2;}
+    }
+    long long c = 0;
+    for (long long i = max(2ll, l); i <= r; ++i) {
+        c += (r / i);
+        res -= (r / i - 1);
+    }
+    res *= 2;
+    c *= 2;
+    c -= r - max(2ll, l) + 1;
+    long long ans = (r - l + 1) * (r - l + 1) - c - res;
+    return ans;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	 <tabTrigger>coprimerange</tabTrigger> -->
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	 <scope>source.c++</scope> 
+</snippet>
